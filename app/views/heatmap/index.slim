@@ -11,5 +11,7 @@ h1
         <option value="Select">Select Resolution</option>
         - for i in @resolutions do
           <option value="#{i}">#{i}</option>
-    div.large-12.columns
-      image#snapshotImage()
+    div.large-12.columns.heatmap-body
+      div.large-12.columns.source-website#sourceWebsite
+        image#snapshotImage()
+      div.large-12.columns#heatmapContainer.heatmap-container

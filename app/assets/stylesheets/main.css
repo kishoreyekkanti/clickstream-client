@@ -1,0 +1,14 @@
+.heatmap-container {
+    width: 100%;
+    /*height: 2000px;*/
+    position: inherit;
+    text-align: center;
+    line-height: 0;
+    margin: 0;
+    padding: 0;
+    z-index: 99;
+}
+
+.source-website, .heatmap-container {
+    position: absolute;
+}

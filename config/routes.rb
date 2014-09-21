@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :products
   get 'heatmap/imagesource', to: 'heatmap#imagesource'
+  get 'heatmap/points', to:'heatmap#points'
   resources :heatmap
 
   # The priority is based upon order of creation: first created -> highest priority.
