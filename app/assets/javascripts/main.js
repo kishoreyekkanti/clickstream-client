@@ -7,12 +7,16 @@ function setImage(url) {
         });
     });
 }
+function getSelectedResolution() {
+    var selectedResolution = $("#resolutions").find(":selected").text();
+    if (selectedResolution === "Select Resolution") {
+        selectedResolution = "1440";
+    }
+    return selectedResolution;
+}
 $(document).ready(function () {
     $("#snapshots").change(function (event) {
-        var selectedResolution = $("#resolutions").find(":selected").text();
-        if (selectedResolution === "Select Resolution") {
-            selectedResolution = "1440";
-        }
+        var selectedResolution = getSelectedResolution();
         var url = "/heatmap/imagesource?key=" + encodeURIComponent("stayzilla_" + this.value + "_" + selectedResolution);
         setImage(url);
     });
@@ -26,7 +30,8 @@ $(document).ready(function () {
 
 function getHeatMapPoints() {
     var selectedSnapshot = $("#snapshots").find(":selected").val();
-    var url = "/heatmap/points?user_action=click&location_url=" + encodeURIComponent(selectedSnapshot);
+    var selectedResolution = getSelectedResolution();
+    var url = "/heatmap/points?user_action=click&location_url=" + encodeURIComponent(selectedSnapshot)+"&resolution="+selectedResolution;
     var points = "";
     $.getJSON(url, function (data) {
         points = data.points;

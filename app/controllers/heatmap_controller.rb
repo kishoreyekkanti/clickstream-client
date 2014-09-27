@@ -23,7 +23,7 @@ class HeatmapController < ApplicationController
     client = Couchbase.connect(:bucket => "clickStream", :hostname => "localhost")
     pages = client.get("stayzilla_pages")
     location_name = pages[params[:location_url]]
-    key = "stayzilla_#{location_name}_#{params[:user_action]}_20140921"
+    key = "stayzilla_#{location_name}_#{params[:user_action]}_#{params[:resolution]}_20140927"
     points = client.get(key, :format => :plain)
     respond_to do |format|
       format.json { render json: {"points" => points} };
