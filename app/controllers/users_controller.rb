@@ -5,11 +5,6 @@ class UsersController < ApplicationController
     else
       render "login"
     end
-
-  end
-
-  def signin
-
   end
 
   def new
@@ -34,14 +29,18 @@ class UsersController < ApplicationController
     end
   end
 
+  private
+
   def create_new_user
     if @user.password_confirmation == @user.password
       @user.password = @user.encrypt_password(@user.password)
       @user.current_token_details = generate_token_details
+      @user.hostname = URI.parse(@user.website).host
       @user.id = @user.email if @user.id.nil?
-      if (@user.save)
+      if @user.save
         session[:user_email] = @user.email
-        render :action => 'dashboard'
+        save_api_token_details(@user)
+        redirect_to dashboard_path
       else
         render :action => 'new'
       end
@@ -50,12 +49,28 @@ class UsersController < ApplicationController
     end
   end
 
-  def dashboard
-    puts "XYZSFDSFDSFSDFDSFDS",session[:user_email]
+  def save_api_token_details(user)
+    puts user.inspect
+    api = ApiTokens.new(get_apitoken_details(user))
+    api.id = user.current_token_details[:apitoken]
+    puts api.inspect
+    api.save
   end
 
   def generate_token_details
-    {current_token_details: {apitoken: SecureRandom.base64, valid_from: Time.now.to_i, valid_to: (Time.now + 365*24*60*60).to_i}}
+    {apitoken: get_random_token, valid_from: Time.now.to_i, valid_to: (Time.now + 365*24*60*60).to_i}
   end
 
+  def get_random_token
+    random = SecureRandom.base64
+    if ApiTokens.find_by_id(random)
+      get_random_token
+    end
+    random
+  end
+
+  def get_apitoken_details(user)
+    api_details = user.current_token_details
+    {valid_from: api_details[:valid_from], valid_to: api_details[:valid_to], userid: user.email, hostname: user.hostname}
+  end
 end

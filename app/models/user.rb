@@ -5,6 +5,7 @@ class User < Couchbase::Model
   attribute :email
   attribute :password
   attribute :website
+  attribute :hostname
   attribute :created_at, :default => lambda { Time.now }
   attribute :updated_at
   attribute :current_token_details

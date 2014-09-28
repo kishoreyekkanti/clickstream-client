@@ -1,0 +1,1 @@
+COUCH_CONFIG = YAML.load_file("#{Rails.root}/config/couchbase.yml")[Rails.env]

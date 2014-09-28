@@ -1,1 +1,17 @@
-h1 Welcome
+h1
+  | Page list
+
+  div.row
+    div.large-12.columns
+      select#snapshots
+        <option value="Select">Select Snapshot Url</option>
+        - @pages.each do |key, value|
+          <option value="#{key}">#{key} - (#{value.capitalize})</option>
+      select#resolutions
+        <option value="Select">Select Resolution</option>
+        - for i in @resolutions do
+          <option value="#{i}">#{i}</option>
+    div.large-12.columns.heatmap-body
+      div.large-12.columns.source-website#sourceWebsite
+        image#snapshotImage()
+      div.large-12.columns#heatmapContainer.heatmap-container
