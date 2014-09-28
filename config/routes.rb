@@ -3,7 +3,8 @@ Rails.application.routes.draw do
   get 'heatmap/imagesource', to: 'heatmap#imagesource'
   get 'heatmap/points', to:'heatmap#points'
   resources :heatmap
-
+  get 'users/login', to:'users#login'
+  resources :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

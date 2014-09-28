@@ -12,3 +12,14 @@
 .source-website, .heatmap-container {
     position: absolute;
 }
+
+.login-form {
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
+    border-radius: 3px;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    background: #FFF;
+    margin-bottom: 20px;
+    margin-top: 5%;
+}

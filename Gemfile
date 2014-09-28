@@ -32,6 +32,7 @@ gem 'foundation-rails'
 
 gem 'slim'
 gem 'slim-rails'
+gem 'couchbase-model'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
