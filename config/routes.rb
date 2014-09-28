@@ -4,7 +4,9 @@ Rails.application.routes.draw do
   get 'heatmap/points', to:'heatmap#points'
   resources :heatmap
   get 'users/login', to:'users#login'
+  get 'users/get', to:'users#get'
   resources :users
+  get 'dashboard', to:'dashboard#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

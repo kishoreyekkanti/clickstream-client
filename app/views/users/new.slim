@@ -6,14 +6,15 @@ div.row
       div.small-12.large-10.medium-9.small-centered.columns
         label Email
         = f.email_field :email, id:"email", placeholder:"abc@example.com", required:''
-        <small class="error">An email address is required.</small>
+        <small class="error" id="spanError">An email address is required.</small>
       div.small-12.large-10.medium-9.small-centered.columns
         label Password
-        = f.password_field :password,  id:"password", placeholder:"password" ,required:''
-        <small class="error">Passwords must be at least 8 characters with 1 capital letter, 1 number, and one special character.</small>
+        = f.password_field :password,  id:"password", placeholder:"password" ,required:'', length:8, pattern:"((?=.*[@#$%]).{8,16})"
+        <small class="error">Passwords must be at least 8 characters with one special character.</small>
       div.small-12.large-10.medium-9.small-centered.columns
         label Confirm Password
-        = f.password_field :confirm_password, name:"user[password_confirmation]",id:"confirmPassword", placeholder:"Confirm Password" ,required:''
+        = f.password_field :confirm_password, name:"user[password_confirmation]",id:"confirmPassword", placeholder:"Confirm Password" ,required:'', :data => {:equalto => "password"}
+        <small class="error">Passwords must match.</small>
       div.small-12.large-10.medium-9.small-centered.columns
         label Website URL
         = f.url_field :website, id:"url", placeholder:"http://google.com", required:''
