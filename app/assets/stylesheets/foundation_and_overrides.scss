@@ -368,14 +368,14 @@ $default-float: left;
 
 // We use these to control button text styles.
 
-// $button-font-family: inherit;
+$button-font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif !important;
 // $button-font-color: #fff;
 // $button-font-color-alt: #333;
 // $button-font-med: em-calc(16);
 // $button-font-tny: em-calc(11);
 // $button-font-sml: em-calc(13);
 // $button-font-lrg: em-calc(20);
-// $button-font-weight: bold;
+$button-font-weight: normal;
 // $button-font-align: center;
 
 // We use these to control various hover effects.

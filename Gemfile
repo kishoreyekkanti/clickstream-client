@@ -33,6 +33,10 @@ gem 'foundation-rails'
 gem 'slim'
 gem 'slim-rails'
 gem 'couchbase-model'
+gem 'coderay'
+gem 'RedCloth'
+gem 'redcarpet'
+gem 'zeroclipboard-rails'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

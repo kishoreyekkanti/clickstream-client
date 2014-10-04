@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   resources :heatmap
   get 'users/login', to:'users#login'
   get 'users/get', to:'users#get'
+  get 'users/welcome', to:'users#welcome'
+  get 'users/logout', to:'users#logout'
   resources :users
   get 'dashboard', to:'dashboard#index'
   # The priority is based upon order of creation: first created -> highest priority.

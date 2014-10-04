@@ -29,6 +29,15 @@ class UsersController < ApplicationController
     end
   end
 
+  def logout
+    session[:user_email] = nil
+    redirect_to users_login_path
+  end
+
+  def welcome
+    @user_email = session[:user_email]
+  end
+
   private
 
   def create_new_user
@@ -40,7 +49,7 @@ class UsersController < ApplicationController
       if @user.save
         session[:user_email] = @user.email
         save_api_token_details(@user)
-        redirect_to dashboard_path
+        redirect_to users_welcome_path
       else
         render :action => 'new'
       end

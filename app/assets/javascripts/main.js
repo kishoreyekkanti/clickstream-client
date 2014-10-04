@@ -25,7 +25,12 @@ $(document).ready(function () {
         var url = "/heatmap/imagesource?key=" + encodeURIComponent("stayzilla_" + selectedSnapshot + "_" + this.value);
         setImage(url);
     });
-
+    var $copy = $("#copy");
+    new ZeroClipboard($copy);
+    $copy.click(function(event){
+        event.preventDefault();
+       $copy.text("Copied");
+    })
 });
 
 function getHeatMapPoints() {

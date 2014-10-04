@@ -23,3 +23,15 @@
     margin-bottom: 20px;
     margin-top: 5%;
 }
+
+.welcome-header{
+    margin-top: 2%;
+    margin-bottom: 1%;
+}
+.welcome-code{
+    background-color: lightgray;
+    overflow-x: scroll;
+}
+.row-gutter{
+    margin-top: 1%;
+}
