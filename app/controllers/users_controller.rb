@@ -48,7 +48,13 @@ class UsersController < ApplicationController
   end
 
   def welcome
-    @user_email = session[:user_email]
+    if session[:user_email]
+      @user_email = session[:user_email]
+      @user = User.find_by_id(@user_email)
+      @apiToken = @user.current_token_details[:apitoken]
+    else
+      redirect_to users_login_path
+    end
   end
 
   private
