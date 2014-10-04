@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get 'users/get', to:'users#get'
   get 'users/welcome', to:'users#welcome'
   get 'users/logout', to:'users#logout'
+  post 'users/login-verify', to:'users#login_verify'
   resources :users
   get 'dashboard', to:'dashboard#index'
   # The priority is based upon order of creation: first created -> highest priority.

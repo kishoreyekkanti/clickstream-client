@@ -2,13 +2,14 @@ div.row
   div.login-form.small-12.large-6.medium-9.small-centered.columns
     div.small-12.large-4.medium-9.small-centered.columns
       h2 Login
-    form
+    = form_for(@user, url: "/users/login-verify",:html => {"data-abide" => ''}) do |f|
       div.row
         div.small-12.large-10.medium-9.small-centered.columns
           label Email
-          input[type="email" name="email" id="email"]
+          = f.email_field :email, placeholder:"abc@example.com", required:''
         div.small-12.large-10.medium-9.small-centered.columns
           label Password
-          input[type="password" name="password" id="password"]
+          = f.password_field :password,  id:"password", placeholder:"password" ,required:'', length:8, pattern:"((?=.*[@#$%]).{8,16})"
         div.small-12.large-10.medium-9.small-centered.columns
-          a.button.expand[href="#"] Login
+          = f.submit "Login", class:"button expand"
+

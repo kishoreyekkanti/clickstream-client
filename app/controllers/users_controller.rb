@@ -3,7 +3,20 @@ class UsersController < ApplicationController
     if session[:user_email]
       redirect_to dashboard_path
     else
+      @user = User.new
       render "login"
+    end
+  end
+
+  def login_verify
+    @incoming_user_details = params[:user]
+    puts @incoming_user_details.inspect
+    @user = User.find_by_id(@incoming_user_details[:email])
+    if User.encrypt_password(@incoming_user_details[:password]) == @user.password
+      session[:user_email] = @user.email
+      redirect_to dashboard_path
+    else
+      redirect_to users_login_path
     end
   end
 

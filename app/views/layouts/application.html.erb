@@ -20,9 +20,13 @@
   <section class="top-bar-section">
     <!-- Right Nav Section -->
     <ul class="right">
-      <li><a href="/dashboard">Dashboard</a></li>
-      <li><a href="#">My Profile</a></li>
-      <li><a href="/users/logout">Signout</a></li>
+      <% if session[:user_email] %>
+          <li><a href="/dashboard">Dashboard</a></li>
+          <li><a href="#">My Profile</a></li>
+          <li><a href="/users/logout">Signout</a></li>
+       <% else %>
+          <li><a href="/users/login">Login</a></li>
+       <% end %>
     </ul>
   </section>
 </nav>
