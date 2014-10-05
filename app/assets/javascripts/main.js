@@ -30,8 +30,27 @@ $(document).ready(function () {
     $copy.click(function(event){
         event.preventDefault();
        $copy.text("Copied");
-    })
+    });
+    bindProfileDetails();
 });
+
+function bindProfileDetails(){
+    $(".personal-info").on("click", function(event){
+        event.preventDefault();
+        $(".personal-info").parent().addClass("active");
+        $(".tracking-code").parent().removeClass("active");
+        $('.profile').show();
+        $('.tracking-details').hide();
+    });
+
+    $(".tracking-code").on('click', function(event){
+        event.preventDefault();
+        $(".personal-info").parent().removeClass("active");
+        $(".tracking-code").parent().addClass("active");
+        $('.profile').hide();
+        $('.tracking-details').show();
+    });
+}
 
 function getHeatMapPoints() {
     var selectedSnapshot = $("#snapshots").find(":selected").val();

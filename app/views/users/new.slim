@@ -5,7 +5,7 @@ div.row
     = form_for(@user, :html => {"data-abide" => ''}) do |f|
       div.small-12.large-10.medium-9.small-centered.columns
         label Email
-        = f.email_field :email, id:"email", placeholder:"abc@example.com", required:''
+        = f.email_field :email, id:"newEmail", placeholder:"abc@example.com", required:''
         <small class="error" id="spanError">An email address is required.</small>
       div.small-12.large-10.medium-9.small-centered.columns
         label Password

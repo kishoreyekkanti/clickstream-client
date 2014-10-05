@@ -57,6 +57,15 @@ class UsersController < ApplicationController
     end
   end
 
+  def profile
+    if session[:user_email]
+      @user_email = session[:user_email]
+      @user = User.find_by_id(@user_email)
+    else
+      redirect_to users_login_path
+    end
+  end
+
   private
 
   def create_new_user
@@ -78,10 +87,8 @@ class UsersController < ApplicationController
   end
 
   def save_api_token_details(user)
-    puts user.inspect
     api = ApiTokens.new(get_apitoken_details(user))
     api.id = user.current_token_details[:apitoken]
-    puts api.inspect
     api.save
   end
 

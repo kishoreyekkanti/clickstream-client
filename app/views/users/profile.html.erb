@@ -1,0 +1,39 @@
+<div class="row row-gutter">
+<div class="large-10 columns small-12 small-centered">
+  <dl class="sub-nav">
+    <dd class="active"><a href="#" class="personal-info">Personal Information</a></dd>
+    <dd><a href="#" class="tracking-code">Tracking Code</a></dd>
+  </dl>
+</div>
+</div>
+<div class="row row-gutter profile">
+  <div class="large-10 columns small-12 small-centered">
+    <%= form_for(@user, :html => {"data-abide" => ''}) do |f|%>
+        <div class="small-12 large-10 medium-9 small-centered columns">
+          <label for="email">Email</label>
+          <%= f.email_field(:email, id:"email", value:@user.email, disabled:true)%>
+        </div>
+        <div class="small-12 large-10 medium-9 small-centered columns">
+          <label for="url">Registered URL</label>
+          <%= f.text_field(:url, id:"url", value:@user.website, disabled:true)%>
+        </div>
+        <div class="small-12 large-10 medium-9 small-centered columns">
+          <label for="apiToken">Api Token</label>
+          <%= f.text_field(:apiToken, id:"apiToken",  value:@user.current_token_details[:apitoken], disabled:true)%>
+        </div>
+    <% end %>
+  </div>
+</div>
+
+<div class="row row-gutter tracking-details" style="display: none">
+  <div class="large-9 small-10 columns welcome-code small-centered" id="code">
+      <% @text = common_tracker(@user.current_token_details[:apitoken]) %>
+      <%= raw markdown(@text)%>
+  </div>
+</div>
+<div class="row row-gutter">
+  <div class="large-5 small-10 columns small-centered">
+    <a href="#" class="button" data-clipboard-target='code' id='copy' title="Copy">Copy</a>
+    <a href="/dashboard" class="button" >Go To Dashboard</a>
+  </div>
+</div>

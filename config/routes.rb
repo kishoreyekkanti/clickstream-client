@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get 'users/get', to:'users#get'
   get 'users/welcome', to:'users#welcome'
   get 'users/logout', to:'users#logout'
+  get 'users/profile'
   post 'users/login-verify', to:'users#login_verify'
   resources :users
   get 'dashboard', to:'dashboard#index'
