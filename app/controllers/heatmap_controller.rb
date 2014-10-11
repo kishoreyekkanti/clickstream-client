@@ -25,7 +25,7 @@ class HeatmapController < ApplicationController
     email = session[:user_email]
     pages = client.get("#{email}_pages")
     location_name = pages[params[:location_url]]
-    key = "#{email}_#{location_name}_#{params[:user_action]}_#{params[:resolution]}_20141011"
+    key = "#{email}_#{location_name}_#{params[:user_action]}_#{params[:resolution]}_20141012"
     points = client.get(key, :format => :plain)
     respond_to do |format|
       format.json { render json: {"points" => points} };
