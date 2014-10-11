@@ -1,0 +1,28 @@
+<h1>
+  Page List
+</h1>
+<div class="row">
+  <div class="large-12 columns">
+    <input type="hidden" value="<%= @email%>" id="userEmail"/>
+    <select id="snapshots">
+      <option value="Select">Select Snapshot Url</option>
+      <% @pages.each do |key, value| %>
+           <option value="<%= key %>"><%= key+" - ("+value.capitalize+")"%></option>
+      <% end %>
+    </select>
+    <select id="resolutions">
+      <option value="Select">Select Resolution</option>
+      <% for i in @resolutions do %>
+          <option value="<%= i %>"><%= i %></option>
+      <% end %>
+    </select>
+  </div>
+</div>
+<div class="large-12 columns heatmap-body small-centered">
+  <div class="large-12 columns source-website" id="sourceWebsite">
+    <image id="snapshotImage"/>
+  </div>
+  <div class="large-12 columns heatmap-container" id="heatmapContainer">
+
+  </div>
+</div>

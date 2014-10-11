@@ -70,7 +70,7 @@ class UsersController < ApplicationController
 
   def create_new_user
     if @user.password_confirmation == @user.password
-      @user.password = @user.encrypt_password(@user.password)
+      @user.password = User.encrypt_password(@user.password)
       @user.current_token_details = generate_token_details
       @user.hostname = URI.parse(@user.website).host
       @user.id = @user.email if @user.id.nil?
@@ -93,7 +93,7 @@ class UsersController < ApplicationController
   end
 
   def generate_token_details
-    {apitoken: get_random_token, valid_from: Time.now.to_i, valid_to: (Time.now + 365*24*60*60).to_i}
+    {apitoken: get_random_token, valid_from: Time.now.to_i*1000, valid_to: ((Time.now + 365*24*60*60).to_i)*1000}
   end
 
   def get_random_token

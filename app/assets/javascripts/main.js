@@ -1,4 +1,5 @@
-function setImage(url) {
+function setImage(url, resolution) {
+    $("#sourceWebsite").attr("style", "width:"+resolution+"px");
     $.getJSON(url, function (data) {
         $("#snapshotImage").attr("src", "http://localhost:9004/" + data.source);
         $("#snapshotImage").on("load", function(){
@@ -15,15 +16,17 @@ function getSelectedResolution() {
     return selectedResolution;
 }
 $(document).ready(function () {
+    var userKey = $("#userEmail").val();
     $("#snapshots").change(function (event) {
         var selectedResolution = getSelectedResolution();
-        var url = "/heatmap/imagesource?key=" + encodeURIComponent("stayzilla_" + this.value + "_" + selectedResolution);
-        setImage(url);
+        var url = "/heatmap/imagesource?key=" + encodeURIComponent(userKey+"_" + this.value + "_" + selectedResolution);
+        setImage(url, selectedResolution);
     });
     $("#resolutions").change(function (event) {
+        var selectedResolution = getSelectedResolution();
         var selectedSnapshot = $("#snapshots").find(":selected").val();
-        var url = "/heatmap/imagesource?key=" + encodeURIComponent("stayzilla_" + selectedSnapshot + "_" + this.value);
-        setImage(url);
+        var url = "/heatmap/imagesource?key=" + encodeURIComponent(userKey+"_" + selectedSnapshot + "_" + this.value);
+        setImage(url, selectedResolution);
     });
     var $copy = $("#copy");
     new ZeroClipboard($copy);
@@ -65,7 +68,7 @@ function getHeatMapPoints() {
 function generateHeatMap(allPoints) {
     var heatMapPoints = [];
     var pointArray = allPoints.split(",");
-    var offset = $("#resolutions").offset();
+    var offset = $("#sourceWebsite").offset();
     $(".heatmap-canvas").remove()
     $.each(pointArray, function (index, element) {
         if (index != 0 && index % 2 == 0) {
