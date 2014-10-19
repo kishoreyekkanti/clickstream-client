@@ -37,6 +37,9 @@ gem 'coderay'
 gem 'RedCloth'
 gem 'redcarpet'
 gem 'zeroclipboard-rails'
+gem 'carrierwave', '~> 0.9.0'
+gem 'rmagick', '~> 2.13.2'
+gem 'uuidtools'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

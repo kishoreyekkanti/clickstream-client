@@ -10,6 +10,7 @@
            <option value="<%= key %>"><%= key+" - ("+value.capitalize+")"%></option>
       <% end %>
     </select>
+    <% @resolutions = available_resolutions() %>
     <select id="resolutions">
       <option value="Select">Select Resolution</option>
       <% for i in @resolutions do %>

@@ -1,25 +1,26 @@
 <div class="row row-gutter">
-<div class="large-10 columns small-12 small-centered">
-  <dl class="sub-nav">
-    <dd class="active"><a href="#" class="personal-info">Personal Information</a></dd>
-    <dd><a href="#" class="tracking-code">Tracking Code</a></dd>
-  </dl>
-</div>
+  <div class="large-10 columns small-12 small-centered">
+    <dl class="sub-nav">
+      <dd class="active"><a href="#" class="personal-info">Personal Information</a></dd>
+      <dd><a href="#" class="tracking-code">Tracking Code</a></dd>
+      <dd><a href="#" class="snapshots">Snapshots</a></dd>
+    </dl>
+  </div>
 </div>
 <div class="row row-gutter profile">
   <div class="large-10 columns small-12 small-centered">
-    <%= form_for(@user, :html => {"data-abide" => ''}) do |f|%>
+    <%= form_for(@user, :html => {"data-abide" => ''}) do |f| %>
         <div class="small-12 large-10 medium-9 small-centered columns">
           <label for="email">Email</label>
-          <%= f.email_field(:email, id:"email", value:@user.email, disabled:true)%>
+          <%= f.email_field(:email, id: "email", value: @user.email, disabled: true) %>
         </div>
         <div class="small-12 large-10 medium-9 small-centered columns">
           <label for="url">Registered URL</label>
-          <%= f.text_field(:url, id:"url", value:@user.website, disabled:true)%>
+          <%= f.text_field(:url, id: "url", value: @user.website, disabled: true) %>
         </div>
         <div class="small-12 large-10 medium-9 small-centered columns">
           <label for="apiToken">Api Token</label>
-          <%= f.text_field(:apiToken, id:"apiToken",  value:@user.current_token_details[:apitoken], disabled:true)%>
+          <%= f.text_field(:apiToken, id: "apiToken", value: @user.current_token_details[:apitoken], disabled: true) %>
         </div>
     <% end %>
   </div>
@@ -27,13 +28,41 @@
 
 <div class="row row-gutter tracking-details" style="display: none">
   <div class="large-9 small-10 columns welcome-code small-centered" id="code">
-      <% @text = common_tracker(@user.current_token_details[:apitoken]) %>
-      <%= raw markdown(@text)%>
+    <% @text = common_tracker(@user.current_token_details[:apitoken]) %>
+    <%= raw markdown(@text) %>
   </div>
 </div>
-<div class="row row-gutter">
+<div class="row row-gutter tracking-details">
   <div class="large-5 small-10 columns small-centered">
     <a href="#" class="button" data-clipboard-target='code' id='copy' title="Copy">Copy</a>
-    <a href="/dashboard" class="button" >Go To Dashboard</a>
+    <a href="/dashboard" class="button">Go To Dashboard</a>
+  </div>
+</div>
+
+<div class="row row-gutter snapshot-detail" style="display: none">
+  <div class="large-9 small-10 columns small-centered" id="code">
+    <%= form_tag({action: :create, method: :post, controller: :snapshots}, multipart: true, :"data-abide" => "") do %>
+        <fieldset>
+          <legend>Upload Snapshot</legend>
+          <label>URL
+            <input type="url" placeholder="http://example.com/parent_resource/child" name="url" required="" id="url">
+            <small class="error">Valid URL required.</small>
+          </label>
+          <label>Resolution
+            <% @resolutions = available_resolutions() %>
+            <select id="resolutions" name="resolution">
+              <option value="Select">Select Resolution</option>
+              <% for i in @resolutions do %>
+                  <option value="<%= i %>"><%= i %></option>
+              <% end %>
+            </select>
+          </label>
+          <label>Upload Image
+            <%= file_field_tag 'snapshot_image', required:""%>
+            <small class="error">Upload an image.</small>
+          </label>
+          <input type="submit" value="Save" class="button"/>
+        </fieldset>
+    <% end %>
   </div>
 </div>

@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   get 'users/profile'
   post 'users/login-verify', to:'users#login_verify'
   resources :users
+  resources :snapshots
   get 'dashboard', to:'dashboard#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
